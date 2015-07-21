@@ -16,6 +16,10 @@ static NSString *resetImage = @"reset.png";
 
 @interface ViewController ()
 
+
+@property(nonatomic,strong)UIView *mainView;
+@property(nonatomic, strong) UIScrollView *scroll;
+
 @property(nonatomic, strong) NSMutableArray *playerOneString;
 @property(nonatomic, strong) NSMutableArray *playerTwoString;
 
@@ -29,17 +33,16 @@ static NSString *resetImage = @"reset.png";
 
 @implementation ViewController
 
-@synthesize pickerView;
+//@synthesize pickerView;
 @synthesize alert;
 
-
+@synthesize mainView;
 
 - (IBAction)resetGame:(id)sender
 
 {
 
-    [self.pickerView selectRow:0 inComponent:0 animated:YES];
-    [self.pickerView selectRow:0 inComponent:1 animated:YES];
+   
 
 
 }
@@ -48,9 +51,7 @@ static NSString *resetImage = @"reset.png";
 -(IBAction)IncreaseRowOne:(id)sender
 {
 
-    [self.pickerView selectRow:[self.pickerView selectedRowInComponent:0] +1 inComponent:0 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+  
     
     [self determineWinner];
 
@@ -60,9 +61,7 @@ static NSString *resetImage = @"reset.png";
 
 {
     
-    [self.pickerView selectRow:[self.pickerView selectedRowInComponent:0] -1 inComponent:0 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+    
     
     [self determineWinner];
     
@@ -72,10 +71,7 @@ static NSString *resetImage = @"reset.png";
 - (IBAction)IncreaseRowTwo:(id)sender
 
 {
-    
-    [self.pickerView selectRow:[self.pickerView selectedRowInComponent:1] +1 inComponent:1 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+ 
     
     [self determineWinner];
 }
@@ -85,9 +81,7 @@ static NSString *resetImage = @"reset.png";
 
 {
     
- [self.pickerView selectRow:[self.pickerView selectedRowInComponent:1] -1 inComponent:1 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+
     
     [self determineWinner];
     
@@ -134,35 +128,13 @@ static NSString *resetImage = @"reset.png";
     
     
     float screenWidth = [UIScreen mainScreen].bounds.size.width;
-    float pickerWidth = screenWidth * 4/5;
-    
-    // Calculate the starting x coordinate.
-    float xPoint = screenWidth / 2 - pickerWidth / 2;
-    
-    // Init the picker view.
-    pickerView = [[UIPickerView alloc] init];
-    
-    // Set the delegate and datasource. Don't expect picker view to work
-    // correctly if you don't set it.
-    [pickerView setDataSource: self];
-    [pickerView setDelegate: self];
-    
-    // Set the picker's frame. We set the y coordinate to 50px.
-    [pickerView setFrame: CGRectMake(xPoint, 150.0f, pickerWidth, 216.0f)];
-    
-    // Before we add the picker view to our view, let's do a couple more
-    // things. First, let the selection indicator (that line inside the
-    // picker view that highlights your selection) to be shown.
-    pickerView.showsSelectionIndicator = YES;
-    
-
     
     
-    // OK, we are ready. Add the picker in our view.
-    [self.view addSubview: pickerView];
-
-    // The number of columns of data
-
+    
+    
+    
+    
+   
 }
 
 
@@ -172,44 +144,22 @@ static NSString *resetImage = @"reset.png";
 }
 
 
-// The number of columns of data
-- (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2;
-}
 
-// The number of rows of data
-- (int)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+-(void)loadView
 {
-    
-   return _playerOneString.count;
-}
+    NSLog(@"In loadview");
+    self.mainView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    self.view = mainView;
+    mainView.backgroundColor = [UIColor yellowColor];
 
-// The data to return for the row and component (column) that's being passed in
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
+    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 500)];
+    scroll.backgroundColor = [UIColor redColor];
+    scroll.pagingEnabled = YES;
+    scroll.contentSize = CGSizeMake(768*5,500);
+    [mainView addSubview:scroll];
     
-        return [_playerOneString objectAtIndex:row];
-        return [_playerTwoString objectAtIndex:row];
+    
 
-}
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    // This method is triggered whenever the user makes a change to the picker selection.
-    // The parameter named row and component represents what was selected.
-    
-    
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
-    
-   
-    NSLog(@"%ld", (long)_firstComponentRow);
-    NSLog(@"%ld", (long)_secondComponentRow);
-    
-    //self.winnerLabel.text = @"Game In Progress";
-
-    [self determineWinner];
-    
 }
 
 
