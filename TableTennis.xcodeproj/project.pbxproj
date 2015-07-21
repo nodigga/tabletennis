@@ -354,6 +354,7 @@
 				INFOPLIST_FILE = TableTennis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Debug;
 		};
@@ -364,6 +365,7 @@
 				INFOPLIST_FILE = TableTennis/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 2;
 			};
 			name = Release;
 		};
@@ -420,6 +422,7 @@
 				5EBB1C9C1B53758D0073FD35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		5EBB1C9D1B53758D0073FD35 /* Build configuration list for PBXNativeTarget "TableTennisTests" */ = {
 			isa = XCConfigurationList;
@@ -428,6 +431,7 @@
 				5EBB1C9F1B53758D0073FD35 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

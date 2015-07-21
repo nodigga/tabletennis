@@ -6,7 +6,11 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
-                <outlet property="picker" destination="srN-sE-ued" id="Wzt-mI-WhD"/>
+                <outlet property="minusButton1" destination="fVL-4z-EYz" id="h59-uc-5qw"/>
+                <outlet property="minusButton2" destination="H1p-er-my6" id="HFR-rj-bBC"/>
+                <outlet property="plusButton1" destination="hoa-Nr-iPW" id="LEv-zY-oLM"/>
+                <outlet property="plusButton2" destination="UlE-UO-IQM" id="LRE-3S-0ew"/>
+                <outlet property="reset" destination="xfJ-6E-PHj" id="Fe3-ml-AAd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="winnerLabel" destination="NN2-vb-NmG" id="7yl-Ul-Ifw"/>
             </connections>
@@ -16,39 +20,118 @@
             <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <pickerView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="srN-sE-ued">
-                    <rect key="frame" x="83" y="217" width="263" height="211"/>
-                    <connections>
-                        <outlet property="dataSource" destination="-1" id="IqJ-eu-88J"/>
-                        <outlet property="delegate" destination="-1" id="Vki-oS-olq"/>
-                    </connections>
-                </pickerView>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3S-hE-Rmn">
-                    <rect key="frame" x="83" y="90" width="62" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="173-am-qTf">
+                    <rect key="frame" x="490" y="67" width="62" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="MZX-wK-HXc"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Player 2" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="173-am-qTf">
-                    <rect key="frame" x="284" y="90" width="62" height="21"/>
-                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                    <nil key="highlightedColor"/>
-                </label>
-                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-6E-PHj">
-                    <rect key="frame" x="191" y="507" width="127" height="30"/>
-                    <state key="normal" title="Reset Game">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xfJ-6E-PHj">
+                    <rect key="frame" x="237" y="499" width="127" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="127" id="T67-rj-vs8"/>
+                    </constraints>
+                    <state key="normal">
                         <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                     </state>
+                    <connections>
+                        <action selector="resetGame:" destination="-1" eventType="touchUpInside" id="IX7-Ou-SKe"/>
+                    </connections>
                 </button>
-                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NN2-vb-NmG">
-                    <rect key="frame" x="116" y="436" width="197" height="21"/>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Player 1" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="P3S-hE-Rmn">
+                    <rect key="frame" x="49" y="66" width="62" height="21"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="21" id="F3o-b9-Bim"/>
+                    </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NN2-vb-NmG">
+                    <rect key="frame" x="202" y="435" width="223" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="16" id="Tgo-ZT-FRA"/>
+                        <constraint firstAttribute="width" constant="223" id="ZAu-7r-rDz"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlE-UO-IQM" userLabel="PlusButton2">
+                    <rect key="frame" x="472" y="385" width="120" height="120"/>
+                    <state key="normal" image="plus">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="IncreaseRowTwo:" destination="-1" eventType="touchUpInside" id="1N2-PD-DMc"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1p-er-my6" userLabel="MinusButton2">
+                    <rect key="frame" x="344" y="385" width="120" height="120"/>
+                    <state key="normal" image="minus">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="DecreaseRowTwo:" destination="-1" eventType="touchUpInside" id="RVh-yQ-xgh"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoa-Nr-iPW" userLabel="PlusButton1">
+                    <rect key="frame" x="20" y="385" width="120" height="120"/>
+                    <state key="normal" image="plus">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="IncreaseRowOne:" destination="-1" eventType="touchUpInside" id="ylP-he-qLV"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVL-4z-EYz" userLabel="MinusButton1">
+                    <rect key="frame" x="148" y="385" width="120" height="120"/>
+                    <state key="normal" image="minus">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="DecreaseRowOne:" destination="-1" eventType="touchUpInside" id="4As-5Q-qaw"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="trailing" secondItem="173-am-qTf" secondAttribute="trailing" constant="48" id="1GI-BT-uqq"/>
+                <constraint firstItem="fVL-4z-EYz" firstAttribute="baseline" secondItem="hoa-Nr-iPW" secondAttribute="baseline" id="3Tf-Bl-zYt"/>
+                <constraint firstItem="H1p-er-my6" firstAttribute="leading" secondItem="UlE-UO-IQM" secondAttribute="trailing" constant="18" id="4Uv-d9-FQH"/>
+                <constraint firstAttribute="bottom" secondItem="xfJ-6E-PHj" secondAttribute="bottom" constant="71" id="EbA-9d-B2a"/>
+                <constraint firstItem="fVL-4z-EYz" firstAttribute="baseline" secondItem="UlE-UO-IQM" secondAttribute="baseline" id="GqA-Bz-tbm"/>
+                <constraint firstItem="P3S-hE-Rmn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="J3T-xO-iFn"/>
+                <constraint firstItem="hoa-Nr-iPW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="JM2-bt-O5I"/>
+                <constraint firstItem="fVL-4z-EYz" firstAttribute="leading" secondItem="hoa-Nr-iPW" secondAttribute="trailing" constant="64" id="KLj-EY-o2n"/>
+                <constraint firstItem="fVL-4z-EYz" firstAttribute="leading" secondItem="hoa-Nr-iPW" secondAttribute="trailing" constant="128" id="b4j-3n-RCZ"/>
+                <constraint firstItem="P3S-hE-Rmn" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="49" id="bt9-gj-adv"/>
+                <constraint firstItem="NN2-vb-NmG" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="202" id="h2M-IR-z8b"/>
+                <constraint firstItem="173-am-qTf" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="67" id="jv5-gU-dfL"/>
+                <constraint firstAttribute="bottom" secondItem="hoa-Nr-iPW" secondAttribute="bottom" constant="95" id="oBn-OA-hFy"/>
+                <constraint firstItem="xfJ-6E-PHj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pEf-ut-uX1"/>
+                <constraint firstAttribute="bottom" secondItem="fVL-4z-EYz" secondAttribute="bottom" constant="95" id="r5K-Jf-Nt4"/>
+                <constraint firstItem="hoa-Nr-iPW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="44" id="sC7-UG-K31"/>
+                <constraint firstAttribute="bottom" secondItem="H1p-er-my6" secondAttribute="bottom" constant="185" id="uQQ-gR-AZb"/>
+                <constraint firstItem="xfJ-6E-PHj" firstAttribute="top" secondItem="NN2-vb-NmG" secondAttribute="bottom" constant="48" id="yXa-Wb-fHj"/>
+            </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="sC7-UG-K31"/>
+                    <exclude reference="3Tf-Bl-zYt"/>
+                    <exclude reference="GqA-Bz-tbm"/>
+                    <exclude reference="KLj-EY-o2n"/>
+                    <exclude reference="4Uv-d9-FQH"/>
+                    <exclude reference="uQQ-gR-AZb"/>
+                </mask>
+            </variation>
         </view>
     </objects>
+    <resources>
+        <image name="minus" width="120" height="120"/>
+        <image name="plus" width="120" height="120"/>
+    </resources>
 </document>
