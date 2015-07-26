@@ -17,8 +17,8 @@ static NSString *resetImage = @"reset.png";
 @interface ViewController ()
 
 
-@property(nonatomic,strong)UIView *mainView;
 @property(nonatomic, strong) UIScrollView *scroll;
+
 
 @property(nonatomic, strong) NSMutableArray *playerOneString;
 @property(nonatomic, strong) NSMutableArray *playerTwoString;
@@ -29,14 +29,22 @@ static NSString *resetImage = @"reset.png";
 @property(nonatomic)int firstComponentRow;
 @property(nonatomic)int secondComponentRow;
 
+@property(nonatomic, strong) UIView *testView;
+@property(nonatomic, strong) UILabel *testLabel;
+
+@property(nonatomic, strong) UIPageControl *pageControl;
+@property(nonatomic)int pageCount;
+
+
 @end
 
 @implementation ViewController
 
 //@synthesize pickerView;
 @synthesize alert;
+@synthesize pageControl;
 
-@synthesize mainView;
+//@synthesize mainView;
 
 - (IBAction)resetGame:(id)sender
 
@@ -51,7 +59,8 @@ static NSString *resetImage = @"reset.png";
 -(IBAction)IncreaseRowOne:(id)sender
 {
 
-  
+   //[self.scroll setContentOffset:CGPointMake(self.scroll.frame.size.width*2, 0.0f) animated:YES];
+    pageControl.currentPage = 5;
     
     [self determineWinner];
 
@@ -61,7 +70,7 @@ static NSString *resetImage = @"reset.png";
 
 {
     
-    
+    pageControl.currentPage = 5;
     
     [self determineWinner];
     
@@ -81,7 +90,7 @@ static NSString *resetImage = @"reset.png";
 
 {
     
-
+    ;
     
     [self determineWinner];
     
@@ -96,26 +105,16 @@ static NSString *resetImage = @"reset.png";
     self.title = @"Table Tennis";
     // Do any additional setup after loading the view from its nib.
     
-    //self.winnerLabel.text = @"Game In Progress";
-    
-    
-//    [self.plusButton1 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
-//    [self.plusButton2 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
-//    
-//    [self.minusButton1 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
-//    [self.minusButton2 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
-    
-    [self.reset setBackgroundImage:[UIImage imageNamed:resetImage] forState:UIControlStateNormal];
-    
     
     _playerOneString = [[NSMutableArray alloc]init];
     _playerTwoString = [[NSMutableArray alloc]init];
     
+   // NSInteger pageCount = _playerOneString.count;
     
     
-    for (int x = 0; x<101; x++)
+    for (int x = 0; x<10; x++)
     {
-    
+        
         
         NSString *string = [NSString stringWithFormat:@"%d", x];
         [_playerOneString addObject:string];
@@ -127,12 +126,80 @@ static NSString *resetImage = @"reset.png";
     }
     
     
+    //self.winnerLabel.text = @"Game In Progress";
+    
+    
+//    [self.plusButton1 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
+//    [self.plusButton2 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
+//    
+//    [self.minusButton1 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
+//    [self.minusButton2 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
+    
     float screenWidth = [UIScreen mainScreen].bounds.size.width;
+    float screenHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    
+    self.view.backgroundColor = [UIColor lightGrayColor];
+    
+        UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, screenWidth/2, screenHeight/2)];
+        scroll.backgroundColor = [UIColor darkGrayColor];
+        scroll.pagingEnabled = YES;
+        scroll.contentSize = CGSizeMake(screenWidth/4,screenHeight/2*15);
+        scroll.delegate = self;
+        scroll.showsVerticalScrollIndicator = NO;
+    
+    
+        UIPageControl * pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 90, scroll.frame.size.width, 20)];
+        //pageControl.numberOfPages = scroll.contentSize.width/scroll.frame.size.width;
+        pageControl.numberOfPages = 15;
+    
+        pageControl.currentPage = 0;
+    
+        [self.view addSubview:pageControl];
+        pageControl.backgroundColor = [UIColor redColor];
     
     
     
+        //[pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
     
     
+   // NSLog(@"%d",_playerOneString.count);
+    
+    
+    [self.view addSubview:scroll];
+    
+    //float scrollWidth = [UIScreen scroll.UIScreen];
+   
+    //UIView *testView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200,200)];
+    //UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenWidth,screenHeight*10)];
+    
+    for(int x =0; x<15; x++)
+    
+    {
+    
+        int y = x+1;
+        // NSLog(@"%d", x);
+        NSString *string = [NSString stringWithFormat:@"%d", x];
+        //NSLog(@"%@",string);
+        //testLabel.frame = CGRectMake(0, 0, screenWidth, screenHeight*x); //x,y,width,height
+        UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -175, screenWidth/2,screenHeight*y)];
+        
+        testLabel.textAlignment = UITextAlignmentCenter;
+        testLabel.textColor = [UIColor whiteColor];
+        NSLog(@"%@",string);
+        
+        testLabel.text = string;
+    
+        [testLabel setFont:[UIFont fontWithName:@"Arial" size:200]];
+        [scroll addSubview:testLabel];
+        
+    }
+    
+    
+    
+    [self.reset setBackgroundImage:[UIImage imageNamed:resetImage] forState:UIControlStateNormal];
+    
+
     
    
 }
@@ -144,23 +211,6 @@ static NSString *resetImage = @"reset.png";
 }
 
 
-
--(void)loadView
-{
-    NSLog(@"In loadview");
-    self.mainView = [[UIView alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    self.view = mainView;
-    mainView.backgroundColor = [UIColor yellowColor];
-
-    UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, 768, 500)];
-    scroll.backgroundColor = [UIColor redColor];
-    scroll.pagingEnabled = YES;
-    scroll.contentSize = CGSizeMake(768*5,500);
-    [mainView addSubview:scroll];
-    
-    
-
-}
 
 
 -(void)determineWinner
@@ -193,8 +243,14 @@ static NSString *resetImage = @"reset.png";
         }
     }
 
+    
+}
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat pageWidth = self.scroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
+    float fractionalPage = self.scroll.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    self.pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
 }
 
 

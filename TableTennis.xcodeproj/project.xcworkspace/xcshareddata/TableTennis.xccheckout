@@ -12,29 +12,53 @@
 	<dict>
 		<key>71B9363197D19EAB52C615231DD6CE6752BC8A41</key>
 		<string>https://github.com/nodigga/mandolin.git</string>
+		<key>BF017F7E4E5FE4EDD74CE59A0AE385AE7E2ABC4D</key>
+		<string>https://github.com/nodigga/tabletennis.git</string>
+		<key>EE1A9695B98BD75294340E6134FBD614EA9F02D8</key>
+		<string>https://github.com/nodigga/tabletennis.git</string>
 	</dict>
 	<key>IDESourceControlProjectPath</key>
-	<string>TableTennis/TableTennis/TableTennis.xcodeproj</string>
+	<string>TableTennis.xcodeproj</string>
 	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
 	<dict>
 		<key>71B9363197D19EAB52C615231DD6CE6752BC8A41</key>
-		<string>../../../..</string>
+		<string>../../..</string>
+		<key>BF017F7E4E5FE4EDD74CE59A0AE385AE7E2ABC4D</key>
+		<string>../../..</string>
+		<key>EE1A9695B98BD75294340E6134FBD614EA9F02D8</key>
+		<string>../..</string>
 	</dict>
 	<key>IDESourceControlProjectURL</key>
-	<string>https://github.com/nodigga/mandolin.git</string>
+	<string>https://github.com/nodigga/tabletennis.git</string>
 	<key>IDESourceControlProjectVersion</key>
 	<integer>111</integer>
 	<key>IDESourceControlProjectWCCIdentifier</key>
-	<string>71B9363197D19EAB52C615231DD6CE6752BC8A41</string>
+	<string>EE1A9695B98BD75294340E6134FBD614EA9F02D8</string>
 	<key>IDESourceControlProjectWCConfigurations</key>
 	<array>
 		<dict>
 			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
 			<string>public.vcs.git</string>
 			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>BF017F7E4E5FE4EDD74CE59A0AE385AE7E2ABC4D</string>
+			<key>IDESourceControlWCCName</key>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
 			<string>71B9363197D19EAB52C615231DD6CE6752BC8A41</string>
 			<key>IDESourceControlWCCName</key>
-			<string>Coding</string>
+			<string></string>
+		</dict>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>EE1A9695B98BD75294340E6134FBD614EA9F02D8</string>
+			<key>IDESourceControlWCCName</key>
+			<string>TableTennis</string>
 		</dict>
 	</array>
 </dict>
