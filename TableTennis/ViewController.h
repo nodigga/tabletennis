@@ -8,13 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController<UIPickerViewDataSource, UIPickerViewDelegate>
+@interface ViewController : UIViewController
 {
     UIPickerView *pickerView;
     
 
 }
-@property (nonatomic, retain) UIPickerView *pickerView;
+
 @property (weak, nonatomic) IBOutlet UILabel *winnerLabel;
 @property (nonatomic,retain) UIAlertView *alert;
 

@@ -7,9 +7,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ViewController">
             <connections>
                 <outlet property="minusButton1" destination="fVL-4z-EYz" id="h59-uc-5qw"/>
-                <outlet property="minusButton2" destination="H1p-er-my6" id="HFR-rj-bBC"/>
                 <outlet property="plusButton1" destination="hoa-Nr-iPW" id="LEv-zY-oLM"/>
-                <outlet property="plusButton2" destination="UlE-UO-IQM" id="LRE-3S-0ew"/>
                 <outlet property="reset" destination="xfJ-6E-PHj" id="Fe3-ml-AAd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
                 <outlet property="winnerLabel" destination="NN2-vb-NmG" id="7yl-Ul-Ifw"/>
@@ -60,24 +58,6 @@
                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UlE-UO-IQM" userLabel="PlusButton2">
-                    <rect key="frame" x="472" y="385" width="120" height="120"/>
-                    <state key="normal" image="plus">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="IncreaseRowTwo:" destination="-1" eventType="touchUpInside" id="1N2-PD-DMc"/>
-                    </connections>
-                </button>
-                <button opaque="NO" contentMode="scaleToFill" ambiguous="YES" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="H1p-er-my6" userLabel="MinusButton2">
-                    <rect key="frame" x="344" y="385" width="120" height="120"/>
-                    <state key="normal" image="minus">
-                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                    </state>
-                    <connections>
-                        <action selector="DecreaseRowTwo:" destination="-1" eventType="touchUpInside" id="RVh-yQ-xgh"/>
-                    </connections>
-                </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hoa-Nr-iPW" userLabel="PlusButton1">
                     <rect key="frame" x="20" y="385" width="120" height="120"/>
                     <state key="normal" image="plus">
@@ -85,6 +65,7 @@
                     </state>
                     <connections>
                         <action selector="IncreaseRowOne:" destination="-1" eventType="touchUpInside" id="ylP-he-qLV"/>
+                        <action selector="changePage:" destination="-1" eventType="touchUpInside" id="Nym-8T-D1y"/>
                     </connections>
                 </button>
                 <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fVL-4z-EYz" userLabel="MinusButton1">
@@ -96,14 +77,23 @@
                         <action selector="DecreaseRowOne:" destination="-1" eventType="touchUpInside" id="4As-5Q-qaw"/>
                     </connections>
                 </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Ph-EO-D5d" userLabel="MinusButton2">
+                    <rect key="frame" x="461" y="391" width="120" height="120"/>
+                    <state key="normal" image="minus">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="DecreaseRowTwo:" destination="-1" eventType="touchUpInside" id="2ZL-Jd-g8W"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="trailing" secondItem="173-am-qTf" secondAttribute="trailing" constant="48" id="1GI-BT-uqq"/>
                 <constraint firstItem="fVL-4z-EYz" firstAttribute="baseline" secondItem="hoa-Nr-iPW" secondAttribute="baseline" id="3Tf-Bl-zYt"/>
-                <constraint firstItem="H1p-er-my6" firstAttribute="leading" secondItem="UlE-UO-IQM" secondAttribute="trailing" constant="18" id="4Uv-d9-FQH"/>
+                <constraint firstAttribute="bottom" secondItem="2Ph-EO-D5d" secondAttribute="bottom" constant="89" id="5X2-3j-4MU"/>
+                <constraint firstAttribute="trailing" secondItem="2Ph-EO-D5d" secondAttribute="trailing" constant="19" id="Ah9-d8-kau"/>
                 <constraint firstAttribute="bottom" secondItem="xfJ-6E-PHj" secondAttribute="bottom" constant="71" id="EbA-9d-B2a"/>
-                <constraint firstItem="fVL-4z-EYz" firstAttribute="baseline" secondItem="UlE-UO-IQM" secondAttribute="baseline" id="GqA-Bz-tbm"/>
                 <constraint firstItem="P3S-hE-Rmn" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" constant="66" id="J3T-xO-iFn"/>
                 <constraint firstItem="hoa-Nr-iPW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="20" id="JM2-bt-O5I"/>
                 <constraint firstItem="fVL-4z-EYz" firstAttribute="leading" secondItem="hoa-Nr-iPW" secondAttribute="trailing" constant="64" id="KLj-EY-o2n"/>
@@ -115,17 +105,13 @@
                 <constraint firstItem="xfJ-6E-PHj" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="pEf-ut-uX1"/>
                 <constraint firstAttribute="bottom" secondItem="fVL-4z-EYz" secondAttribute="bottom" constant="95" id="r5K-Jf-Nt4"/>
                 <constraint firstItem="hoa-Nr-iPW" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="44" id="sC7-UG-K31"/>
-                <constraint firstAttribute="bottom" secondItem="H1p-er-my6" secondAttribute="bottom" constant="185" id="uQQ-gR-AZb"/>
                 <constraint firstItem="xfJ-6E-PHj" firstAttribute="top" secondItem="NN2-vb-NmG" secondAttribute="bottom" constant="48" id="yXa-Wb-fHj"/>
             </constraints>
             <variation key="default">
                 <mask key="constraints">
                     <exclude reference="sC7-UG-K31"/>
                     <exclude reference="3Tf-Bl-zYt"/>
-                    <exclude reference="GqA-Bz-tbm"/>
                     <exclude reference="KLj-EY-o2n"/>
-                    <exclude reference="4Uv-d9-FQH"/>
-                    <exclude reference="uQQ-gR-AZb"/>
                 </mask>
             </variation>
         </view>

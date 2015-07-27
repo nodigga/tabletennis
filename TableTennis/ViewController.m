@@ -16,6 +16,10 @@ static NSString *resetImage = @"reset.png";
 
 @interface ViewController ()
 
+
+@property(nonatomic, strong) UIScrollView *scroll;
+
+
 @property(nonatomic, strong) NSMutableArray *playerOneString;
 @property(nonatomic, strong) NSMutableArray *playerTwoString;
 
@@ -25,21 +29,28 @@ static NSString *resetImage = @"reset.png";
 @property(nonatomic)int firstComponentRow;
 @property(nonatomic)int secondComponentRow;
 
+@property(nonatomic, strong) UIView *testView;
+@property(nonatomic, strong) UILabel *testLabel;
+
+@property(nonatomic, strong) UIPageControl *pageControl;
+@property(nonatomic)int pageCount;
+
+
 @end
 
 @implementation ViewController
 
-@synthesize pickerView;
+//@synthesize pickerView;
 @synthesize alert;
+@synthesize pageControl;
 
-
+//@synthesize mainView;
 
 - (IBAction)resetGame:(id)sender
 
 {
 
-    [self.pickerView selectRow:0 inComponent:0 animated:YES];
-    [self.pickerView selectRow:0 inComponent:1 animated:YES];
+   
 
 
 }
@@ -48,9 +59,8 @@ static NSString *resetImage = @"reset.png";
 -(IBAction)IncreaseRowOne:(id)sender
 {
 
-    [self.pickerView selectRow:[self.pickerView selectedRowInComponent:0] +1 inComponent:0 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+   //[self.scroll setContentOffset:CGPointMake(self.scroll.frame.size.width*2, 0.0f) animated:YES];
+    pageControl.currentPage = 5;
     
     [self determineWinner];
 
@@ -60,9 +70,7 @@ static NSString *resetImage = @"reset.png";
 
 {
     
-    [self.pickerView selectRow:[self.pickerView selectedRowInComponent:0] -1 inComponent:0 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+    pageControl.currentPage = 5;
     
     [self determineWinner];
     
@@ -72,10 +80,7 @@ static NSString *resetImage = @"reset.png";
 - (IBAction)IncreaseRowTwo:(id)sender
 
 {
-    
-    [self.pickerView selectRow:[self.pickerView selectedRowInComponent:1] +1 inComponent:1 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+ 
     
     [self determineWinner];
 }
@@ -85,9 +90,7 @@ static NSString *resetImage = @"reset.png";
 
 {
     
- [self.pickerView selectRow:[self.pickerView selectedRowInComponent:1] -1 inComponent:1 animated:YES];
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
+    ;
     
     [self determineWinner];
     
@@ -102,26 +105,16 @@ static NSString *resetImage = @"reset.png";
     self.title = @"Table Tennis";
     // Do any additional setup after loading the view from its nib.
     
-    //self.winnerLabel.text = @"Game In Progress";
-    
-    
-//    [self.plusButton1 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
-//    [self.plusButton2 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
-//    
-//    [self.minusButton1 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
-//    [self.minusButton2 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
-    
-    [self.reset setBackgroundImage:[UIImage imageNamed:resetImage] forState:UIControlStateNormal];
-    
     
     _playerOneString = [[NSMutableArray alloc]init];
     _playerTwoString = [[NSMutableArray alloc]init];
     
+   // NSInteger pageCount = _playerOneString.count;
     
     
-    for (int x = 0; x<101; x++)
+    for (int x = 0; x<10; x++)
     {
-    
+        
         
         NSString *string = [NSString stringWithFormat:@"%d", x];
         [_playerOneString addObject:string];
@@ -133,36 +126,82 @@ static NSString *resetImage = @"reset.png";
     }
     
     
+    //self.winnerLabel.text = @"Game In Progress";
+    
+    
+//    [self.plusButton1 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
+//    [self.plusButton2 setBackgroundImage:[UIImage imageNamed:plusImage] forState:UIControlStateNormal];
+//    
+//    [self.minusButton1 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
+//    [self.minusButton2 setBackgroundImage:[UIImage imageNamed:minusImage] forState:UIControlStateNormal];
+    
     float screenWidth = [UIScreen mainScreen].bounds.size.width;
-    float pickerWidth = screenWidth * 4/5;
+    float screenHeight = [UIScreen mainScreen].bounds.size.height;
     
-    // Calculate the starting x coordinate.
-    float xPoint = screenWidth / 2 - pickerWidth / 2;
     
-    // Init the picker view.
-    pickerView = [[UIPickerView alloc] init];
+    self.view.backgroundColor = [UIColor lightGrayColor];
     
-    // Set the delegate and datasource. Don't expect picker view to work
-    // correctly if you don't set it.
-    [pickerView setDataSource: self];
-    [pickerView setDelegate: self];
+        UIScrollView *scroll = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 100, screenWidth/2, screenHeight/2)];
+        scroll.backgroundColor = [UIColor darkGrayColor];
+        scroll.pagingEnabled = YES;
+        scroll.contentSize = CGSizeMake(screenWidth/4,screenHeight/2*15);
+        scroll.delegate = self;
+        scroll.showsVerticalScrollIndicator = NO;
     
-    // Set the picker's frame. We set the y coordinate to 50px.
-    [pickerView setFrame: CGRectMake(xPoint, 150.0f, pickerWidth, 216.0f)];
     
-    // Before we add the picker view to our view, let's do a couple more
-    // things. First, let the selection indicator (that line inside the
-    // picker view that highlights your selection) to be shown.
-    pickerView.showsSelectionIndicator = YES;
+        UIPageControl * pageControl = [[UIPageControl alloc] initWithFrame:CGRectMake(0, 90, scroll.frame.size.width, 20)];
+        //pageControl.numberOfPages = scroll.contentSize.width/scroll.frame.size.width;
+        pageControl.numberOfPages = 15;
+    
+        pageControl.currentPage = 0;
+    
+        [self.view addSubview:pageControl];
+        pageControl.backgroundColor = [UIColor redColor];
+    
+    
+    
+        //[pageControl addTarget:self action:@selector(changePage:) forControlEvents:UIControlEventValueChanged];
+    
+    
+   // NSLog(@"%d",_playerOneString.count);
+    
+    
+    [self.view addSubview:scroll];
+    
+    //float scrollWidth = [UIScreen scroll.UIScreen];
+   
+    //UIView *testView = [[UIView alloc]initWithFrame:CGRectMake(0, 0, 200,200)];
+    //UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, screenWidth,screenHeight*10)];
+    
+    for(int x =0; x<15; x++)
+    
+    {
+    
+        int y = x+1;
+        // NSLog(@"%d", x);
+        NSString *string = [NSString stringWithFormat:@"%d", x];
+        //NSLog(@"%@",string);
+        //testLabel.frame = CGRectMake(0, 0, screenWidth, screenHeight*x); //x,y,width,height
+        UILabel *testLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, -175, screenWidth/2,screenHeight*y)];
+        
+        testLabel.textAlignment = UITextAlignmentCenter;
+        testLabel.textColor = [UIColor whiteColor];
+        NSLog(@"%@",string);
+        
+        testLabel.text = string;
+    
+        [testLabel setFont:[UIFont fontWithName:@"Arial" size:200]];
+        [scroll addSubview:testLabel];
+        
+    }
+    
+    
+    
+    [self.reset setBackgroundImage:[UIImage imageNamed:resetImage] forState:UIControlStateNormal];
     
 
     
-    
-    // OK, we are ready. Add the picker in our view.
-    [self.view addSubview: pickerView];
-
-    // The number of columns of data
-
+   
 }
 
 
@@ -172,45 +211,6 @@ static NSString *resetImage = @"reset.png";
 }
 
 
-// The number of columns of data
-- (int)numberOfComponentsInPickerView:(UIPickerView *)pickerView
-{
-    return 2;
-}
-
-// The number of rows of data
-- (int)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
-{
-    
-   return _playerOneString.count;
-}
-
-// The data to return for the row and component (column) that's being passed in
-- (NSString *)pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
-{
-    
-        return [_playerOneString objectAtIndex:row];
-        return [_playerTwoString objectAtIndex:row];
-
-}
-- (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
-{
-    // This method is triggered whenever the user makes a change to the picker selection.
-    // The parameter named row and component represents what was selected.
-    
-    
-    _firstComponentRow = [self.pickerView selectedRowInComponent:0];
-    _secondComponentRow = [self.pickerView selectedRowInComponent:1];
-    
-   
-    NSLog(@"%ld", (long)_firstComponentRow);
-    NSLog(@"%ld", (long)_secondComponentRow);
-    
-    //self.winnerLabel.text = @"Game In Progress";
-
-    [self determineWinner];
-    
-}
 
 
 -(void)determineWinner
@@ -243,8 +243,14 @@ static NSString *resetImage = @"reset.png";
         }
     }
 
+    
+}
 
-
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    CGFloat pageWidth = self.scroll.frame.size.width; // you need to have a **iVar** with getter for scrollView
+    float fractionalPage = self.scroll.contentOffset.x / pageWidth;
+    NSInteger page = lround(fractionalPage);
+    self.pageControl.currentPage = page; // you need to have a **iVar** with getter for pageControl
 }
 
 
